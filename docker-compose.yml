@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+  database:
+    image: postgres:latest
+    ports:
+      - "5444:5432"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend/database/job_portal.sql:/docker-entrypoint-initdb.d/1-job_portal.sql
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on:
+      - database
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./backend/.env
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
