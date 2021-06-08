@@ -1,16 +1,7 @@
 <template>
-  <div v-if="!auth">
-    <h1>You are not logged in!</h1>
-  </div>
+  <div v-if="auth" class="form-wrapper">
 
-  <div v-if="auth">
-    <h4 class="text-center mt-20">
-      <small>
-        <router-link class="w-100 btn btn-primary" to="/resume">Back to resume</router-link>
-      </small>
-    </h4>
-
-    <main class="form-signin">
+    <main>
       <form @submit.prevent="submit">
         <h2>Edit resume</h2>
 
@@ -112,5 +103,14 @@ export default {
 </script>
 
 <style scoped>
+
+.form-control {
+  width: 1200px;
+}
+
+.form-wrapper {
+  position: relative;
+  left: -600px;
+}
 
 </style>

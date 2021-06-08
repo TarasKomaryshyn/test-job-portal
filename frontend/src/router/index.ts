@@ -4,7 +4,8 @@ import Login from '@/views/Login.vue'
 import CandidateRegister from '@/views/CandidateRegister.vue'
 import CustomerRegister from '@/views/CustomersRegister.vue'
 import Password from '@/views/Password.vue'
-import Vacancies from '@/components/vacancies/Vacancies.vue'
+import CustomerVacancies from '@/components/vacancies/CustomerVacancies.vue'
+import CandidatesVacancies from '@/components/vacancies/CandidatesVacancies.vue'
 import CreateVacancy from '@/components/vacancies/CreateVacancy.vue'
 import UpdateVacancy from '@/components/vacancies/UpdateVacancy.vue'
 import Resume from '@/components/resume/Resume.vue'
@@ -17,7 +18,8 @@ const routes: Array<RouteRecordRaw> = [
   { path: '/customers/register', component: CustomerRegister },
   { path: '/candidates/register', component: CandidateRegister },
   { path: '/password', component: Password },
-  { path: '/vacancies', component: Vacancies },
+  { path: '/vacancies/my', component: CustomerVacancies },
+  { path: '/vacancies', component: CandidatesVacancies },
   { path: '/vacancies/create', component: CreateVacancy },
   { path: '/vacancies/update/:id', component: UpdateVacancy, props: true },
   { path: '/resume', component: Resume },

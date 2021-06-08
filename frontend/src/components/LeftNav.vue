@@ -2,14 +2,14 @@
   <div v-if="auth && role === 'candidate'" class="sidenav">
     <a href="/">HOME</a>
     <router-link to="/resume">RESUME</router-link>
-    <router-link to="/">...</router-link>
+    <router-link to="/vacancies">VACANCIES</router-link>
     <router-link to="/">...</router-link>
     <router-link to="/">...</router-link>
   </div>
 
   <div v-if="auth && role === 'customer'" class="sidenav">
     <a href="/">HOME</a>
-    <router-link to="/vacancies">VACANCIES</router-link>
+    <router-link to="/vacancies/my">VACANCIES</router-link>
     <router-link to="/">...</router-link>
     <router-link to="/">...</router-link>
     <router-link to="/">...</router-link>

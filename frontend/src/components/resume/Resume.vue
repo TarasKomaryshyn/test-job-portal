@@ -1,16 +1,12 @@
 <template>
-  <div v-if="!auth">
-    <h1>You are not logged in!</h1>
-  </div>
-
-  <div v-if="auth" class="container-fluid">
+  <div v-if="auth" class="form-wrapper">
 
     <div v-if="resume.message" class="text-center">
       <h2 style="width: 500px">No resume found at the moment </h2>
       <router-link class="w-100 btn btn-lg btn-primary" to="/resume/create" >Create Resume</router-link>
     </div>
 
-    <main v-if="!resume.message" class="form-signin">
+    <main v-if="!resume.message">
       <h2>Your Resume</h2>
 
       <div class="form-floating">
@@ -75,6 +71,7 @@ export default {
         headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
       });
       resume.value = await response.json();
+      return true;
     });
 
     return {
@@ -86,5 +83,14 @@ export default {
 </script>
 
 <style scoped>
+
+.form-control {
+  width: 1200px;
+}
+
+.form-wrapper {
+  position: relative;
+  left: -600px;
+}
 
 </style>

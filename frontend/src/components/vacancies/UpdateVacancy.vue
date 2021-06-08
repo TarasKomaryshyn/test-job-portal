@@ -1,16 +1,7 @@
 <template>
-  <div v-if="!auth">
-    <h1>You are not logged in!</h1>
-  </div>
+  <div v-if="auth" class="form-wrapper">
 
-  <div v-if="auth">
-    <h4 class="text-center mt-20">
-      <small>
-        <router-link class="w-100 btn btn-primary" to="/vacancies">View your vacancies</router-link>
-      </small>
-    </h4>
-
-    <main class="form-signin">
+    <main>
       <form @submit.prevent="submit">
         <h2>Edit vacancy</h2>
 
@@ -31,7 +22,7 @@
           <label for="description">Description</label>
         </div>
 
-       <p></p> <button class="w-100 btn btn-lg btn-primary" type="submit">Edit</button>
+       <button class="w-100 btn btn-lg btn-primary" type="submit">Edit</button>
       </form>
     </main>
   </div>
@@ -82,7 +73,7 @@ export default {
 
       if (response.value.ok) {
         await alert('Vacancy successfully edited')
-        await router.push('/vacancies');
+        await router.push('/vacancies/my');
       } else if (typeof content.message === "object") {
         alert(content.message[0])
       } else {
@@ -101,5 +92,14 @@ export default {
 </script>
 
 <style scoped>
+
+.form-control {
+  width: 1000px;
+}
+
+.form-wrapper {
+  position: relative;
+  left: -600px;
+}
 
 </style>
