@@ -64,6 +64,13 @@ export class VacanciesController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Get('applied')
+  @ApiBearerAuth('access-token')
+  async findAllByCandidateId(@Request() req): Promise<Vacancy[]> {
+    return await this.vacanciesService.getVacanciesByCandidateId(req.user);
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Get('all')
   @ApiBearerAuth('access-token')
   async findAll(@Request() req): Promise<Vacancy[]> {

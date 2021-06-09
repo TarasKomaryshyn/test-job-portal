@@ -11,6 +11,7 @@ import UpdateVacancy from '@/components/vacancies/UpdateVacancy.vue'
 import Resume from '@/components/resume/Resume.vue'
 import CreateResume from '@/components/resume/CreateResume.vue'
 import UpdateResume from '@/components/resume/UpdateResume.vue'
+import CandidateApplications from "@/components/vacancies/CandidateApplications.vue";
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/', component: Home },
@@ -25,6 +26,8 @@ const routes: Array<RouteRecordRaw> = [
   { path: '/resume', component: Resume },
   { path: '/resume/create', component: CreateResume },
   { path: '/resume/update', component: UpdateResume },
+  { path: '/applications', component: CandidateApplications },
+
 ]
 
 const router = createRouter({

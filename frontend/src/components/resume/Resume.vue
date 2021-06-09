@@ -1,9 +1,9 @@
 <template>
   <div v-if="auth" class="form-wrapper">
 
-    <div v-if="resume.message" class="text-center">
-      <h2 style="width: 500px">No resume found at the moment </h2>
-      <router-link class="w-100 btn btn-lg btn-primary" to="/resume/create" >Create Resume</router-link>
+    <div v-if="resume.message" style="position: relative; right: -500px;">
+      <h2 style="width: 520px">No resume found at the moment </h2>
+      <router-link class="w-100 btn btn-lg btn-primary" to="/resume/create" style="position: relative; right: -100px;">Create Resume</router-link>
     </div>
 
     <main v-if="!resume.message">

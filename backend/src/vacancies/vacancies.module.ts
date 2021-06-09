@@ -14,5 +14,6 @@ import { CandidatesModule } from '../candidates/candidates.module';
   ],
   controllers: [VacanciesController],
   providers: [VacanciesService],
+  exports: [VacanciesService],
 })
 export class VacanciesModule {}

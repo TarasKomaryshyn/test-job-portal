@@ -1,9 +1,9 @@
 <template>
   <div v-if="auth" class="form-wrapper">
 
-    <div v-if="vacancies.length === 0">
-      <h2 style="width: 520px">No vacancy found at the moment </h2>
-      <router-link class="w-100 btn btn-lg btn-primary" to="/vacancies/create" >Create new Vacancy</router-link>
+    <div v-if="vacancies.length === 0" style="position: relative; right: -300px;">
+      <h2 style="width: 520px;" >No vacancy found at the moment </h2>
+      <router-link class="w-100 btn btn-lg btn-primary" to="/vacancies/create" style="position: relative; right: -100px;">Create new Vacancy</router-link>
     </div>
 
     <div v-if="vacancies.length > 0">

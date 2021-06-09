@@ -8,6 +8,7 @@ import { Vacancy } from './interface/vacancies.interface';
 import { UserPayload } from '../resume/interface/userPayload.interface';
 import { User } from '../auth/interface/user.interface';
 import { CreateVacancyDto } from './dto/createVacancy.dto';
+import { VacancyCandidatesEntity } from "../vacancyCandidates/entity/vacancyCandidates.entity";
 
 @Injectable()
 export class VacanciesService {
@@ -73,6 +74,39 @@ export class VacanciesService {
       .where('vacancies.id = :id', { id: vacancyId })
       .leftJoin('vacancies.customerId', 'customer')
       .getOne();
+  }
+
+  async findAllByCandidateId(candidateId: number): Promise<Vacancy[]> {
+    return await this.vacanciesRepository
+      .createQueryBuilder('vacancies')
+      .select([
+        'vacancies.id',
+        'vacancies.vacancyName',
+        'vacancies.company',
+        'vacancies.city',
+        'vacancies.description',
+      ])
+      .leftJoin(VacancyCandidatesEntity, 'vc', 'vc.vacancyId = vacancies.id')
+      .where('vc.candidateId = :id', { id: candidateId })
+      .getMany();
+  }
+
+  async getVacanciesByCandidateId(candidate: UserPayload): Promise<Vacancy[]> {
+    const isCandidate: User = await this.candidatesService.findByEmail(
+      candidate.email,
+    );
+    if (!isCandidate) {
+      const errorMessage = 'You do not have access. Method Not Allowed';
+      throw new HttpException(errorMessage, 405);
+    }
+    const existingVacancies: Vacancy[] = await this.findAllByCandidateId(
+      candidate.id,
+    );
+    if (!existingVacancies) {
+      const errorMessage = 'You have not yet applied for any vacancy';
+      throw new HttpException(errorMessage, 400);
+    }
+    return existingVacancies;
   }
 
   async getVacanciesByCustomerId(customer: UserPayload): Promise<Vacancy[]> {

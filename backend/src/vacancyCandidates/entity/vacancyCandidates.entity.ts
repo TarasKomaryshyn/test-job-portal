@@ -5,25 +5,24 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
-  OneToOne,
+  Unique,
 } from 'typeorm';
-import { CustomersEntity } from '../../customers/entity/customers.entity';
 import { CandidatesEntity } from '../../candidates/entity/candidates.entity';
-import { Vacancy } from '../../vacancies/interface/vacancies.interface';
-import { User } from '../../auth/interface/user.interface';
+import { VacanciesEntity } from '../../vacancies/entity/vacancies.entity';
 
 @Entity({ name: 'vacancy_candidates' })
+@Unique(['vacancyId', 'candidateId'])
 export class VacancyCandidatesEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => CustomersEntity)
+  @ManyToOne(() => VacanciesEntity)
   @JoinColumn({ name: 'vacancy_id' })
-  vacancy: Vacancy;
+  vacancyId: number;
 
   @ManyToOne(() => CandidatesEntity)
   @JoinColumn({ name: 'candidate_id' })
-  candidate: User;
+  candidateId: number;
 
   @CreateDateColumn({
     nullable: true,

@@ -1,8 +1,8 @@
 <template>
   <div v-if="auth" class="form-wrapper">
 
-    <div v-if="vacancies.length === 0">
-      <h2 style="width: 520px">No vacancy found at the moment </h2>
+    <div v-if="vacancies.length === 0" style="position: relative; right: -300px;">
+      <h2 style="width: 520px;">No vacancy found at the moment </h2>
     </div>
 
     <div v-if="vacancies.length > 0">
@@ -25,7 +25,8 @@
             <td>{{ vacancy.city }}</td>
             <td>{{ vacancy.description }}</td>
             <td>
-              <button class="btn btn-sm btn-outline-secondary" id="apply-btn" @click="deleteVacancy(vacancy.id)">Apply</button>
+              <button class="btn btn-sm btn-outline-secondary" id="apply-btn" @click="applyForVacancy(vacancy.id)">Apply
+              </button>
             </td>
           </tr>
           </tbody>
@@ -42,6 +43,25 @@ import {useStore} from "vuex";
 
 export default {
   name: "CandidatesVacancies",
+
+  methods: {
+    async applyForVacancy(id: number) {
+      console.log(id);
+
+      const response = await fetch(`http://localhost:3000/vacancyCandidates/create/${id}`, {
+        method: 'POST',
+        headers: {'Authorization': `Bearer ${getAccessToken()}`},
+      });
+
+      const content = await response.json();
+
+      if (response.ok) {
+        await alert('You have successfully applied')
+      } else {
+        await alert(content.message)
+      }
+    }
+  },
 
   setup() {
     const vacancies = ref([]);

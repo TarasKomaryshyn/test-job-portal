@@ -3,7 +3,7 @@
     <a href="/">HOME</a>
     <router-link to="/resume">RESUME</router-link>
     <router-link to="/vacancies">VACANCIES</router-link>
-    <router-link to="/">...</router-link>
+    <router-link to="/applications">APPLICATIONS</router-link>
     <router-link to="/">...</router-link>
   </div>
 
